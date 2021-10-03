@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no"
+    />
+    <title>Quote | Generator</title>
+    <meta
+      name="description"
+      content="Innovative way of generating new quotes."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="Quotes that you would love" />
+    <meta
+      property="og:description"
+      content="Amazing way to generate quotes with just a click"
+    />
+    <link rel="icon" href="">
+    <meta property="og:image" content="" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Poster/style.css' %}" />
+
+  </head>
+  <body>
+
+    <div class="main">
+        <div class="page">
+          <div class="container">
+            <div class="wrapper">
+              <div class="left">
+                <div class="image" >
+                  <div class="imageInner" >
+                    <img src = "https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+                    height="660px" width = "500px"/>
+                  </div>
+
+                </div>
+              </div>
+              <div class="right">
+                <h3 class="title">
+                    <div>
+                      <p>Quote <i>Generator</i></p>
+                    </div></h3>
+                  <div class="subtitle">
+                    <div>
+                      <p>This webapp generates a quote at random.</p>
+                    </div>
+                  </div>
+
+
+
+                  <blockquote>
+                    {% if Quote.Quote != None %}
+                    <p><q>
+                      {{Quote.Quote}}
+                    </q></p>
+                    <footer>{{Quote.Author}}</footer>
+
+                    {% else %}
+
+                    <p><q>
+                      No Quote at the Moment
+                    </q></p>
+                    {% if Quote.Author != None %}
+                    <footer>{{Quote.Author}}</footer>
+                    {% else %}
+                    <footer>Anonymous</footer>
+                    {% endif %}
+                    {% endif %}
+                  </blockquote>
+
+
+                  <form class="form" action="{% url 'Generate' %}" method="POST" data-form="">
+                    {% csrf_token %}
+                    <div class="fd-form-group" style="position: relative;">
+                      <!-- {{ Form.Text }} -->
+                    </div>
+
+
+              <div class="footer">
+                <button type="submit" class="fd-btn button" id="submit">
+                  <span>Generate Post</span>
+                </button>
+
+                <div class="footerText">
+                  <div>
+                    <p>Test out this awesome Quote Generator @ Surenjanath Singh 2021</p>
+                  </div>
+                </div>
+              </div>
+            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+
+</html>
